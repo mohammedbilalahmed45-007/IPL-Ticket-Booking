@@ -6,7 +6,7 @@
 }
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 html {
@@ -24,6 +24,7 @@ body {
 }
 
 section {
+    max-width: 900px;
     padding: 30px;
     margin: 25px auto;
 }
@@ -56,8 +57,8 @@ nav li {
 
 nav ul li a {
     color: white;
-    text-decoration:none;
-    font-weight:lighter;
+    text-decoration: none;
+    font-weight: lighter;
 }
 
 nav ul li a:hover {
@@ -67,7 +68,7 @@ nav ul li a:hover {
 #home {
     max-width: 100%;
     min-height: 300px;
-    background-color:cornsilk;
+    background-color: cornsilk;
     text-align: center;
     padding: 80px 20px;
 }
@@ -77,13 +78,13 @@ nav ul li a:hover {
 }
 
 #home a {
-    display:inline-block;
+    display: inline-block;
     background-color: var(--accent);
     color: var(--primary);
     padding: 12px 25px;
-    margin: 20px;
+    margin: 20px 10px;
     border-radius: 9px;
-    text-decoration:none;
+    text-decoration: none;
     font-weight: bold;
 }
 
@@ -99,7 +100,7 @@ h2 {
 #about {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 3px 10px #00000015;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 #about h3 {
@@ -124,7 +125,7 @@ td {
     text-align: center;
 }
 
-th,td {
+th, td {
     border: 1px solid #dddddd;
 }
 
@@ -140,14 +141,13 @@ select, input {
 }
 
 select {
-    cursor:pointer;
+    cursor: pointer;
 }
-
 
 #booking {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 3px 10px #00000015;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 form {
@@ -158,7 +158,7 @@ form {
 
 form label {
     font-weight: bold;
-    display:inline-block;
+    display: inline-block;
     margin-top: 10px;
 }
 
@@ -168,9 +168,9 @@ form input, form select {
 
 button {
     background-color: var(--primary);
-    color:white;
+    color: white;
     padding: 12px 20px;
-    border:none;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 8px 5px;
@@ -180,42 +180,39 @@ button:hover {
     background: #174A7E;
 }
 
-
 aside {
     max-width: 500px;
     margin: 25px auto;
     padding: 20px;
-    background-color:white;
+    background-color: white;
     border-left: 5px solid var(--accent);
     border-radius: 8px;
-    box-shadow: 0 3px 10px #00000015;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
-
 
 #my-bookings {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 3px 10px #00000015;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
-
 
 #guidelines article {
     background-color: white;
     padding: 20px;
     margin: 15px 0;
     border-radius: 8px;
-    box-shadow: 0 3px 10px #00000015;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-#guidelines articles h3 {
+#guidelines article h3 {
     color: var(--primary);
 }
-
 
 footer {
     background-color: var(--primary);
     color: white;
     padding: 25px;
+    text-align: center;
 }
 
 footer h3 {
@@ -224,7 +221,7 @@ footer h3 {
 
 footer a {
     color: var(--accent);
-    text-decoration:none;
+    text-decoration: none;
 }
 
 footer a:hover {
