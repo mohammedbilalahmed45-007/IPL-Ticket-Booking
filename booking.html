@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter your details in the IPL 2026 ticket booking form.">
+    <title>Book Tickets | IPL 2026 Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>IPL 2026 Ticket Booking</h1>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="index.html#matches">Match Schedule</a>
+            <a href="booking.html" aria-current="page">Book Tickets</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="booking-intro">
+            <p class="eyebrow">Make match day yours</p>
+            <h2>Book your IPL tickets</h2>
+            <p>Choose a match and stand, then enter your details to validate your booking request.</p>
+        </section>
+
+        <section id="booking" class="booking-card" aria-labelledby="form-title">
+            <h2 id="form-title">Ticket details</h2>
+            <p class="form-note">All fields marked <span aria-hidden="true">*</span> are required.</p>
+
+            <form id="booking-form">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="full-name">Full Name <span aria-hidden="true">*</span></label>
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="fullName"
+                            minlength="3"
+                            maxlength="50"
+                            autocomplete="name"
+                            placeholder="e.g. Arjun Kumar"
+                            required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email Address <span aria-hidden="true">*</span></label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="you@example.com"
+                            required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            pattern="[6-9][0-9]{9}"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            title="Enter a 10-digit Indian mobile number starting with 6, 7, 8, or 9."
+                            placeholder="10-digit mobile number"
+                            required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="match">Match Selection <span aria-hidden="true">*</span></label>
+                        <select id="match" name="match" required>
+                            <option value="" selected disabled>Choose a match</option>
+                            <option value="rcb-csk">RCB vs CSK — Bengaluru, 10 April</option>
+                            <option value="mi-kkr">MI vs KKR — Mumbai, 12 April</option>
+                            <option value="rr-srh">RR vs SRH — Jaipur, 14 April</option>
+                            <option value="dc-pbks">DC vs PBKS — Delhi, 16 April</option>
+                            <option value="gt-lsg">GT vs LSG — Ahmedabad, 18 April</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="stand">Stand Category <span aria-hidden="true">*</span></label>
+                        <select id="stand" name="stand" required>
+                            <option value="" selected disabled>Choose a stand</option>
+                            <option value="general">General</option>
+                            <option value="premium">Premium</option>
+                            <option value="vip">VIP</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="quantity">Number of Tickets <span aria-hidden="true">*</span></label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            min="1"
+                            max="10"
+                            step="1"
+                            value="1"
+                            required>
+                    </div>
+                </div>
+
+                <fieldset class="preferences">
+                    <legend>Booking preferences</legend>
+                    <p class="fieldset-hint">Choose a seating preference (subject to availability).</p>
+                    <div class="choice-list">
+                        <label><input type="radio" name="seating" value="near-pavilion"> Near the pavilion</label>
+                        <label><input type="radio" name="seating" value="center-view"> Center view</label>
+                        <label><input type="radio" name="seating" value="any" checked> Any available seating</label>
+                    </div>
+                    <label class="checkbox-choice">
+                        <input type="checkbox" name="emailConfirmation" value="yes" checked>
+                        Send booking confirmation to my email
+                    </label>
+                </fieldset>
+
+                <label class="checkbox-choice terms-choice">
+                    <input type="checkbox" name="terms" required>
+                    I agree to the booking terms and conditions. <span aria-hidden="true">*</span>
+                </label>
+
+                <div class="form-actions">
+                    <button type="submit">Submit Booking</button>
+                    <button type="reset" class="secondary-button">Reset Form</button>
+                </div>
+            </form>
+
+            <p id="form-message" class="form-message" role="status" aria-live="polite" hidden>
+                Your details passed the form validation. This demo does not reserve tickets or process payment.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 IPL Ticket Booking Website. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const bookingForm = document.getElementById("booking-form");
+        const formMessage = document.getElementById("form-message");
+
+        bookingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            formMessage.hidden = false;
+        });
+
+        bookingForm.addEventListener("reset", () => {
+            formMessage.hidden = true;
+        });
+    </script>
+</body>
+</html>
