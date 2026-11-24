@@ -6,6 +6,7 @@
     <meta name="description" content="Enter your details in the IPL 2026 ticket booking form.">
     <title>Book Tickets | IPL 2026 Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
     <header>
@@ -139,18 +140,5 @@
         <p>&copy; 2026 IPL Ticket Booking Website. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        const bookingForm = document.getElementById("booking-form");
-        const formMessage = document.getElementById("form-message");
-
-        bookingForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            formMessage.hidden = false;
-        });
-
-        bookingForm.addEventListener("reset", () => {
-            formMessage.hidden = true;
-        });
-    </script>
 </body>
 </html>
