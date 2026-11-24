@@ -9,9 +9,21 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>IPL 2026 Ticket Booking</h1>
-        <nav class="site-nav" aria-label="Main navigation">
+    <header class="site-header">
+        <h1><a class="site-brand" href="index.html">IPL 2026 Ticket Booking</a></h1>
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="site-navigation">
+            <span class="menu-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+        <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="index.html#matches">Match Schedule</a>
             <a href="booking.html" aria-current="page">Book Tickets</a>

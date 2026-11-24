@@ -40,6 +40,90 @@ matchBookingLinks.forEach((link) => {
     });
 });
 
+const menuToggles = document.querySelectorAll(".menu-toggle");
+menuToggles.forEach((toggle) => {
+    const navigation = document.getElementById(toggle.getAttribute("aria-controls"));
+    if (!navigation) {
+        return;
+    }
+
+    function closeNavigation() {
+        toggle.classList.remove("is-open");
+        navigation.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open navigation menu");
+    }
+
+    toggle.addEventListener("click", () => {
+        const isOpen = toggle.classList.toggle("is-open");
+        if (isOpen) {
+            navigation.classList.add("is-open");
+        } else {
+            navigation.classList.remove("is-open");
+        }
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeNavigation);
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && toggle.classList.contains("is-open")) {
+            closeNavigation();
+            toggle.focus();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+            closeNavigation();
+        }
+    });
+});
+
+const teamFilter = document.getElementById("team-filter");
+const matchGrid = document.getElementById("match-grid");
+if (teamFilter && matchGrid) {
+    const matchCards = matchGrid.querySelectorAll(".match-card");
+    const matchCount = document.getElementById("match-count");
+    const emptyState = document.getElementById("match-empty");
+    const viewToggles = document.querySelectorAll(".view-toggle");
+
+    function updateVisibleMatches() {
+        let visibleCount = 0;
+        matchCards.forEach((card) => {
+            const teams = card.dataset.teams.split(/\s+/);
+            const isVisible = teamFilter.value === "all" || teams.includes(teamFilter.value);
+            card.hidden = !isVisible;
+            if (isVisible) {
+                visibleCount += 1;
+            }
+        });
+
+        matchCount.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "match" : "matches"}`;
+        emptyState.hidden = visibleCount > 0;
+    }
+
+    teamFilter.addEventListener("change", updateVisibleMatches);
+    updateVisibleMatches();
+
+    viewToggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+            const isGridView = toggle.id === "grid-view";
+            matchGrid.classList.toggle("is-grid", isGridView);
+            matchGrid.classList.toggle("is-list", !isGridView);
+
+            viewToggles.forEach((viewToggle) => {
+                const isSelected = viewToggle === toggle;
+                viewToggle.classList.toggle("is-active", isSelected);
+                viewToggle.setAttribute("aria-pressed", String(isSelected));
+            });
+        });
+    });
+}
+
 const matchSelect = document.getElementById("match");
 const standSelect = document.getElementById("stand");
 const ticketQuantityInput = document.getElementById("quantity");

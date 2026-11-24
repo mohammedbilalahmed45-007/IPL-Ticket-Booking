@@ -10,17 +10,27 @@
 <body>
 
     <!-- Header and Navigation -->
-    <header>
-        <h1>IPL 2026 Ticket Booking</h1>
+    <header class="site-header">
+        <h1><a class="site-brand" href="index.html">IPL 2026 Ticket Booking</a></h1>
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="site-navigation">
+            <span class="menu-icon" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
 
-        <nav>
-            <a href="#matches">Matches</a> |
-            <a href="booking.html">Book Ticket</a> |
-            <a href="#my-bookings">My Bookings</a> |
+        <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+            <a href="#matches">Matches</a>
+            <a href="booking.html">Book Ticket</a>
+            <a href="#my-bookings">My Bookings</a>
             <a href="#guidelines">Guidelines</a>
         </nav>
-
-        <hr>
     </header>
 
     <main>
@@ -77,78 +87,132 @@
         <!-- Match Schedule -->
         <section id="matches">
             <h2>IPL 2026 Match Schedule</h2>
+            <div class="match-controls">
+                <div class="team-filter">
+                    <label for="team-filter">Filter by team</label>
+                    <select id="team-filter">
+                        <option value="all">All Teams</option>
+                        <option value="CSK">Chennai Super Kings (CSK)</option>
+                        <option value="DC">Delhi Capitals (DC)</option>
+                        <option value="GT">Gujarat Titans (GT)</option>
+                        <option value="KKR">Kolkata Knight Riders (KKR)</option>
+                        <option value="LSG">Lucknow Super Giants (LSG)</option>
+                        <option value="MI">Mumbai Indians (MI)</option>
+                        <option value="PBKS">Punjab Kings (PBKS)</option>
+                        <option value="RR">Rajasthan Royals (RR)</option>
+                        <option value="RCB">Royal Challengers Bengaluru (RCB)</option>
+                        <option value="SRH">Sunrisers Hyderabad (SRH)</option>
+                    </select>
+                </div>
+                <div class="view-controls" role="group" aria-label="Match display options">
+                    <button id="grid-view" class="view-toggle is-active" type="button" aria-pressed="true">Grid View</button>
+                    <button id="list-view" class="view-toggle" type="button" aria-pressed="false">List View</button>
+                </div>
+            </div>
+            <p id="match-count" class="match-count" aria-live="polite">Showing 5 matches</p>
 
-            <table border="1" cellpadding="8" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Match Number</th>
-                        <th>Teams</th>
-                        <th>Date & Time</th>
-                        <th>Venue</th>
-                        <th>General</th>
-                        <th>Premium</th>
-                        <th>VIP</th>
-                        <th>Book</th>
-                    </tr>
-                </thead>
+            <div id="match-grid" class="match-grid is-grid">
+                <article class="match-card" data-teams="RCB CSK">
+                    <div class="match-main">
+                        <span class="match-number">Match 1</span>
+                        <h3>RCB vs CSK</h3>
+                    </div>
+                    <dl class="match-details">
+                        <div><dt>Date &amp; Time</dt><dd>10 April 2026, 7:30 PM</dd></div>
+                        <div><dt>Venue</dt><dd>Bengaluru</dd></div>
+                    </dl>
+                    <div class="match-pricing">
+                        <h4>Ticket Prices</h4>
+                        <ul>
+                            <li><span>General</span><strong>₹800</strong></li>
+                            <li><span>Premium</span><strong>₹2,000</strong></li>
+                            <li><span>VIP</span><strong>₹5,000</strong></li>
+                        </ul>
+                    </div>
+                    <a class="match-book-button" href="booking.html?match=rcb-csk">Book</a>
+                </article>
 
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>RCB vs CSK</td>
-                        <td>10 April 2026, 7:30 PM</td>
-                        <td>Bengaluru</td>
-                        <td>₹800</td>
-                        <td>₹2,000</td>
-                        <td>₹5,000</td>
-                        <td><a class="match-book-button" href="booking.html?match=rcb-csk">Book</a></td>
-                    </tr>
+                <article class="match-card" data-teams="MI KKR">
+                    <div class="match-main">
+                        <span class="match-number">Match 2</span>
+                        <h3>MI vs KKR</h3>
+                    </div>
+                    <dl class="match-details">
+                        <div><dt>Date &amp; Time</dt><dd>12 April 2026, 7:30 PM</dd></div>
+                        <div><dt>Venue</dt><dd>Mumbai</dd></div>
+                    </dl>
+                    <div class="match-pricing">
+                        <h4>Ticket Prices</h4>
+                        <ul>
+                            <li><span>General</span><strong>₹900</strong></li>
+                            <li><span>Premium</span><strong>₹2,200</strong></li>
+                            <li><span>VIP</span><strong>₹5,500</strong></li>
+                        </ul>
+                    </div>
+                    <a class="match-book-button" href="booking.html?match=mi-kkr">Book</a>
+                </article>
 
-                    <tr>
-                        <td>2</td>
-                        <td>MI vs KKR</td>
-                        <td>12 April 2026, 7:30 PM</td>
-                        <td>Mumbai</td>
-                        <td>₹900</td>
-                        <td>₹2,200</td>
-                        <td>₹5,500</td>
-                        <td><a class="match-book-button" href="booking.html?match=mi-kkr">Book</a></td>
-                    </tr>
+                <article class="match-card" data-teams="RR SRH">
+                    <div class="match-main">
+                        <span class="match-number">Match 3</span>
+                        <h3>RR vs SRH</h3>
+                    </div>
+                    <dl class="match-details">
+                        <div><dt>Date &amp; Time</dt><dd>14 April 2026, 3:30 PM</dd></div>
+                        <div><dt>Venue</dt><dd>Jaipur</dd></div>
+                    </dl>
+                    <div class="match-pricing">
+                        <h4>Ticket Prices</h4>
+                        <ul>
+                            <li><span>General</span><strong>₹700</strong></li>
+                            <li><span>Premium</span><strong>₹1,800</strong></li>
+                            <li><span>VIP</span><strong>₹4,500</strong></li>
+                        </ul>
+                    </div>
+                    <a class="match-book-button" href="booking.html?match=rr-srh">Book</a>
+                </article>
 
-                    <tr>
-                        <td>3</td>
-                        <td>RR vs SRH</td>
-                        <td>14 April 2026, 3:30 PM</td>
-                        <td>Jaipur</td>
-                        <td>₹700</td>
-                        <td>₹1,800</td>
-                        <td>₹4,500</td>
-                        <td><a class="match-book-button" href="booking.html?match=rr-srh">Book</a></td>
-                    </tr>
+                <article class="match-card" data-teams="DC PBKS">
+                    <div class="match-main">
+                        <span class="match-number">Match 4</span>
+                        <h3>DC vs PBKS</h3>
+                    </div>
+                    <dl class="match-details">
+                        <div><dt>Date &amp; Time</dt><dd>16 April 2026, 7:30 PM</dd></div>
+                        <div><dt>Venue</dt><dd>Delhi</dd></div>
+                    </dl>
+                    <div class="match-pricing">
+                        <h4>Ticket Prices</h4>
+                        <ul>
+                            <li><span>General</span><strong>₹750</strong></li>
+                            <li><span>Premium</span><strong>₹1,900</strong></li>
+                            <li><span>VIP</span><strong>₹4,800</strong></li>
+                        </ul>
+                    </div>
+                    <a class="match-book-button" href="booking.html?match=dc-pbks">Book</a>
+                </article>
 
-                    <tr>
-                        <td>4</td>
-                        <td>DC vs PBKS</td>
-                        <td>16 April 2026, 7:30 PM</td>
-                        <td>Delhi</td>
-                        <td>₹750</td>
-                        <td>₹1,900</td>
-                        <td>₹4,800</td>
-                        <td><a class="match-book-button" href="booking.html?match=dc-pbks">Book</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td>GT vs LSG</td>
-                        <td>18 April 2026, 7:30 PM</td>
-                        <td>Ahmedabad</td>
-                        <td>₹850</td>
-                        <td>₹2,100</td>
-                        <td>₹5,200</td>
-                        <td><a class="match-book-button" href="booking.html?match=gt-lsg">Book</a></td>
-                    </tr>
-                </tbody>
-            </table>
+                <article class="match-card" data-teams="GT LSG">
+                    <div class="match-main">
+                        <span class="match-number">Match 5</span>
+                        <h3>GT vs LSG</h3>
+                    </div>
+                    <dl class="match-details">
+                        <div><dt>Date &amp; Time</dt><dd>18 April 2026, 7:30 PM</dd></div>
+                        <div><dt>Venue</dt><dd>Ahmedabad</dd></div>
+                    </dl>
+                    <div class="match-pricing">
+                        <h4>Ticket Prices</h4>
+                        <ul>
+                            <li><span>General</span><strong>₹850</strong></li>
+                            <li><span>Premium</span><strong>₹2,100</strong></li>
+                            <li><span>VIP</span><strong>₹5,200</strong></li>
+                        </ul>
+                    </div>
+                    <a class="match-book-button" href="booking.html?match=gt-lsg">Book</a>
+                </article>
+            </div>
+            <p id="match-empty" class="match-empty" hidden>No matches found for this team.</p>
         </section>
 
         <hr>
@@ -167,7 +231,20 @@
 
         <section id="guidelines">
             <h2>Guidelines</h2>
-            <p>This section will contain ticket guidelines.</p>
+            <div class="guidelines-grid">
+                <article>
+                    <h3>Check Match Details</h3>
+                    <p>Confirm the teams, date, time, and venue before selecting a match.</p>
+                </article>
+                <article>
+                    <h3>Review Your Booking</h3>
+                    <p>Check your match, stand, and ticket quantity in the summary before submitting.</p>
+                </article>
+                <article>
+                    <h3>Follow Venue Guidance</h3>
+                    <p>Review the venue's current entry and spectator guidance before match day.</p>
+                </article>
+            </div>
         </section>
 
     </main>
