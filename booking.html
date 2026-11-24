@@ -130,6 +130,33 @@
                 </div>
             </form>
 
+            <aside class="booking-summary" aria-labelledby="summary-title" aria-live="polite">
+                <h3 id="summary-title">Booking Summary</h3>
+                <p id="summary-message">Choose a match and stand to see your estimated total.</p>
+                <dl id="summary-details" class="summary-details" hidden>
+                    <div>
+                        <dt>Selected Match</dt>
+                        <dd id="summary-match">—</dd>
+                    </div>
+                    <div>
+                        <dt>Stand Category</dt>
+                        <dd id="summary-stand">—</dd>
+                    </div>
+                    <div>
+                        <dt>Number of Tickets</dt>
+                        <dd id="summary-quantity">—</dd>
+                    </div>
+                    <div>
+                        <dt>Price Per Ticket</dt>
+                        <dd id="summary-unit-price">—</dd>
+                    </div>
+                </dl>
+                <p id="summary-total-row" class="summary-total" hidden>
+                    <span>Total Price</span>
+                    <strong id="summary-total">—</strong>
+                </p>
+            </aside>
+
             <p id="form-message" class="form-message" role="status" aria-live="polite" hidden>
                 Your details passed the form validation. This demo does not reserve tickets or process payment.
             </p>

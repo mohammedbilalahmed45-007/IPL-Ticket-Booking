@@ -40,7 +40,9 @@ matchBookingLinks.forEach((link) => {
     });
 });
 
-const matchSelect = document.querySelector("#match");
+const matchSelect = document.getElementById("match");
+const standSelect = document.getElementById("stand");
+const ticketQuantityInput = document.getElementById("quantity");
 if (matchSelect) {
     const queryParams = new URLSearchParams(window.location.search);
     const selectedMatch = queryParams.get("match");
@@ -56,8 +58,84 @@ if (matchSelect) {
 }
 
 const bookingForm = document.getElementById("booking-form");
-if (bookingForm) {
+const bookingSummary = document.querySelector(".booking-summary");
+if (bookingForm && matchSelect && standSelect && ticketQuantityInput && bookingSummary) {
     const formMessage = document.getElementById("form-message");
+    const summaryMessage = document.getElementById("summary-message");
+    const summaryDetails = document.getElementById("summary-details");
+    const summaryTotalRow = document.getElementById("summary-total-row");
+    const summaryMatch = document.getElementById("summary-match");
+    const summaryStand = document.getElementById("summary-stand");
+    const summaryQuantity = document.getElementById("summary-quantity");
+    const summaryUnitPrice = document.getElementById("summary-unit-price");
+    const summaryTotal = document.getElementById("summary-total");
+    const pricesByMatch = {
+        "rcb-csk": { general: 800, premium: 2000, vip: 5000 },
+        "mi-kkr": { general: 900, premium: 2200, vip: 5500 },
+        "rr-srh": { general: 700, premium: 1800, vip: 4500 },
+        "dc-pbks": { general: 750, premium: 1900, vip: 4800 },
+        "gt-lsg": { general: 850, premium: 2100, vip: 5200 }
+    };
+    const currencyFormatter = new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+    });
+    let hasShownSummaryToast = false;
+
+    function updateBookingSummary() {
+        summaryDetails.hidden = true;
+        summaryTotalRow.hidden = true;
+
+        if (!matchSelect.value || !standSelect.value) {
+            summaryMessage.textContent = "Choose a match and stand to see your estimated total.";
+            summaryMessage.hidden = false;
+            return;
+        }
+
+        const quantity = ticketQuantityInput.valueAsNumber;
+        if (
+            !ticketQuantityInput.value ||
+            !Number.isInteger(quantity) ||
+            quantity < 1 ||
+            quantity > 10 ||
+            !ticketQuantityInput.validity.valid
+        ) {
+            summaryMessage.textContent = "Enter a whole number from 1 to 10 to see your estimated total.";
+            summaryMessage.hidden = false;
+            return;
+        }
+
+        const matchPrices = pricesByMatch[matchSelect.value];
+        const pricePerTicket = matchPrices && matchPrices[standSelect.value];
+        if (typeof pricePerTicket !== "number") {
+            summaryMessage.textContent = "Pricing is unavailable for this selection.";
+            summaryMessage.hidden = false;
+            return;
+        }
+
+        const selectedMatchText = matchSelect.selectedOptions[0].textContent;
+        const selectedStandText = standSelect.selectedOptions[0].textContent;
+        summaryMatch.textContent = selectedMatchText;
+        summaryStand.textContent = selectedStandText;
+        summaryQuantity.textContent = String(quantity);
+        summaryUnitPrice.textContent = currencyFormatter.format(pricePerTicket);
+        summaryTotal.textContent = currencyFormatter.format(pricePerTicket * quantity);
+        summaryMessage.hidden = true;
+        summaryDetails.hidden = false;
+        summaryTotalRow.hidden = false;
+
+        if (!hasShownSummaryToast) {
+            hasShownSummaryToast = true;
+            showToast("Booking summary updated successfully!", "success");
+        }
+    }
+
+    matchSelect.addEventListener("change", updateBookingSummary);
+    standSelect.addEventListener("change", updateBookingSummary);
+    ticketQuantityInput.addEventListener("input", updateBookingSummary);
+    ticketQuantityInput.addEventListener("change", updateBookingSummary);
+    updateBookingSummary();
 
     bookingForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -67,5 +145,7 @@ if (bookingForm) {
 
     bookingForm.addEventListener("reset", () => {
         formMessage.hidden = true;
+        hasShownSummaryToast = false;
+        window.setTimeout(updateBookingSummary, 0);
     });
 }
