@@ -77,7 +77,8 @@ nav ul li a:hover {
     font-size: 35px;
 }
 
-#home a {
+#home a,
+#book-ticket a {
     display: inline-block;
     background-color: var(--accent);
     color: var(--primary);
@@ -88,7 +89,8 @@ nav ul li a:hover {
     font-weight: bold;
 }
 
-#home a:hover {
+#home a:hover,
+#book-ticket a:hover {
     background-color: white;
 }
 
